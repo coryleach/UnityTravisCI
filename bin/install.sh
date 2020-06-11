@@ -23,7 +23,7 @@ fi
 
 # See https://unity3d.com/get-unity/download/archive to get download URLs
 UNITY_DOWNLOAD_CACHE="${HOME}/unity_download_cache"
-UNITY_INSTALLER_URL="https://download.unity3d.com/download_unity/${UNIYT_INSTALLER_HASH}/MacEditorInstaller/${UNITY_INSTALLER_VERSION}.pkg"
+UNITY_INSTALLER_URL="https://download.unity3d.com/download_unity/${UNITY_INSTALLER_HASH}/MacEditorInstaller/${UNITY_INSTALLER_VERSION}.pkg"
 
 # Create our cache directory if it does not exist
 if [ ! -d $UNITY_DOWNLOAD_CACHE ]; then

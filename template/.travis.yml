@@ -1,3 +1,4 @@
+sudo: required
 language: objective-c
 osx_image: xcode11.2
 branches:
