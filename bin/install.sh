@@ -2,9 +2,9 @@
 
 echo "install.sh hello world!"
 
-UNITY_MAC_VERSIONS_URL = "https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json"
-UNITY_WIN_VERSIONS_URL = "https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json"
-UNITY_NIX_VERSIONS_URL = "https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json"
+UNITY_MAC_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json"
+UNITY_WIN_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json"
+UNITY_NIX_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json"
 
 #Setup Default Values if ENV vars do not exist
 if [ -z "${UNITY_INSTALLER_HASH}" ]; then
