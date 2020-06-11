@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo "before-install.sh hello world!"
+echo "Before Installing"
+ls
