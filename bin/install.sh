@@ -11,6 +11,16 @@ if [ -z "${UNITY_INSTALLER_VERSION}" ]; then
     UNITY_INSTALLER_VERSION="2019.3.15f1"
 fi
 
+# Links for posterity
+# MacOS Versions Download Link
+# https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json
+
+# Windows Version Download Link
+# https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json
+
+# Linkux Versions Download Link
+# https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json
+
 # See https://unity3d.com/get-unity/download/archive to get download URLs
 UNITY_DOWNLOAD_CACHE="${HOME}/unity_download_cache"
 UNITY_INSTALLER_URL="https://download.unity3d.com/download_unity/${UNIYT_INSTALLER_HASH}/MacEditorInstaller/${UNITY_INSTALLER_VERSION}.pkg"
