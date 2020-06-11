@@ -18,7 +18,7 @@ fi
 # Windows Version Download Link
 # https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json
 
-# Linkux Versions Download Link
+# Linux Versions Download Link
 # https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json
 
 # See https://unity3d.com/get-unity/download/archive to get download URLs
