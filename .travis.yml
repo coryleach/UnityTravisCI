@@ -1,0 +1,13 @@
+language: objective-c
+osx_image: xcode11.2
+branches:
+  only:
+    - master
+before_install:
+  - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/before-install.sh)
+install:
+  - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/install.sh)
+script:
+  - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/auth.sh)
+  - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/run-tests.sh)
+  - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/deauth.sh)
