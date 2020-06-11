@@ -1,0 +1,10 @@
+
+TestUnityProject/TravisCITest/Library
+TestUnityProject/TravisCITest/Temp
+TestUnityProject/TravisCITest/Logs
+TestUnityProject/TravisCITest/obj
+TestUnityProject/TravisCITest/*.sln
+TestUnityProject/TravisCITest/*.csproj
+TestUnityProject/TravisCITest/.idea
+TestUnityProject/TravisCITest/Assets/Plugins
+TestUnityProject/TravisCITest/Assets/Plugins.meta
