@@ -2,6 +2,10 @@
 
 echo "install.sh hello world!"
 
+UNITY_MAC_VERSIONS_URL = "https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json"
+UNITY_WIN_VERSIONS_URL = "https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json"
+UNITY_NIX_VERSIONS_URL = "https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json"
+
 #Setup Default Values if ENV vars do not exist
 if [ -z "${UNITY_INSTALLER_HASH}" ]; then
     UNITY_INSTALLER_HASH="dcb72c2e9334"
@@ -10,6 +14,13 @@ fi
 if [ -z "${UNITY_INSTALLER_VERSION}" ]; then
     UNITY_INSTALLER_VERSION="2019.3.15f1"
 fi
+
+JSON=$(curl $UNITY_MAC_VERSIONS_URL | jq '.official[-1]')
+LATEST_VERSION=$(jq --jsonargs '[version]' "${JSON}")
+LATEST_VERSION_URL=$(jq --jsonargs '[downloadUrl]' "${JSON}")
+
+echo $LATEST_VERSION
+echo $LATEST_VERSION_URL
 
 # Links for posterity
 # MacOS Versions Download Link

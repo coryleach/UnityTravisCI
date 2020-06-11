@@ -3,9 +3,5 @@
 echo "Before Installing"
 ls
 
-echo "HOME: ${HOME}"
-
-ls ..
-
-echo "Installing jq"
+#install JQ for parsing json list of unity versions
 brew install jq
