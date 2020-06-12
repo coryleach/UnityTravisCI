@@ -24,8 +24,14 @@ elif [ USE_GET_UNITY ]; then
     UNITY_DOWNLOAD_URL=$(get-unity)
   fi
 
+
   echo "cmd: get-unity" $UNITY_VERSION
   echo "installer-url:" $UNITY_DOWNLOAD_URL
+
+  #grep out the exact unity version number we got back
+  UNITY_VERSION=$(grep -o -E "[0-9]+\.[0-9]+\.[0-9]+[a-z][0-9]+" <<< $UNITY_DOWNLOAD_URL)
+  echo "Version:" $UNITY_VERSION
+  export UNITY_VERSION
 
 else
 
@@ -53,6 +59,7 @@ else
     #Latest version should be the last element in the array
     LATEST_VERSION_JSON=$(jq '.official[-1]' <<< "${VERSIONS_JSON}")
     LATEST_VERSION=$(jq '.version' <<< "${LATEST_VERSION_JSON}")
+    UNITY_VERSION=$LATEST_VERSION_JSON
     UNITY_DOWNLOAD_URL=$(jq '.downloadUrl' <<< "${LATEST_VERSION_JSON}")
     echo "Downloading Latest Version:" $LATEST_VERSION
     echo "Download Url:" "${UNITY_DOWNLOAD_URL}"
@@ -61,6 +68,7 @@ else
   #Remove front and back quotes from URL we just parsed out of JSON
   UNITY_DOWNLOAD_URL="${UNITY_DOWNLOAD_URL%\"}"
   UNITY_DOWNLOAD_URL="${UNITY_DOWNLOAD_URL#\"}"
+  export UNITY_VERSION
 
 fi
 
@@ -72,6 +80,8 @@ fi
 #Get name of installer file from the URL
 FILENAME=$(basename "${UNITY_DOWNLOAD_URL}")
 INSTALLER_PATH="${UNITY_DOWNLOAD_CACHE}/${FILENAME}"
+
+exit 0
 
 # Downloads a package if it does not already exist in cache
 if [ ! -e $INSTALLER_PATH ]; then
