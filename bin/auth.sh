@@ -20,19 +20,9 @@ export UNITY_APP
 
 echo "Authorizing Unity ${UNITY_VERSION}"
 
-if [ ! -z "${UNITY_SERIAL}" ]; then
-  #Authorize unity with serial if we have one
-  "${UNITY_APP}/Contents/MacOS/Unity" \
-  -quit \
-  -batchmode \
-  -serial "${UNITY_SERIAL}" \
-  -username "${UNITY_USERNAME}" \
-  -password "${UNITY_PASSWORD}"
-else
-  #Authorize unity with serial if we have one
-  "${UNITY_APP}/Contents/MacOS/Unity" \
-  -quit \
-  -batchmode \
-  -username "${UNITY_USERNAME}" \
-  -password "${UNITY_PASSWORD}"
-fi
+"${UNITY_APP}/Contents/MacOS/Unity" \
+-quit \
+-batchmode \
+-serial "${UNITY_SERIAL}" \
+-username "${UNITY_USERNAME}" \
+-password "${UNITY_PASSWORD}"
