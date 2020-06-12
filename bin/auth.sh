@@ -25,4 +25,4 @@ echo "Authorizing Unity ${UNITY_VERSION}"
 -batchmode \
 -serial "${UNITY_SERIAL}" \
 -username "${UNITY_USERNAME}" \
--password "${UNITY_PASSWORD}"
+-password "${UNITY_PASSWORD}" || true
