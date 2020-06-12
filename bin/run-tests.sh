@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# https://github.com/tmux/tmux/issues/475#issuecomment-231527324
+export EVENT_NOKQUEUE=1
+
 echo "runtests.sh hello world!"
 
 UNITY_PROJECT_FOLDER="TestUnityProject"
