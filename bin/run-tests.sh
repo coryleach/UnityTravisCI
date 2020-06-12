@@ -31,6 +31,8 @@ else
       -silent-crashes \
       -stackTraceLogType Full \
       -logFile - \
+      -username "${UNITY_USERNAME}" \
+      -password "${UNITY_PASSWORD}" \
       -projectPath "$(pwd)/${UNITY_PROJECT_FOLDER}" \
       -runEditorTests \
       -editorTestsResultFile "$(pwd)/test.xml"
