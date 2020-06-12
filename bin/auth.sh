@@ -26,13 +26,13 @@ if [ ! -z "${UNITY_SERIAL}" ]; then
   -quit \
   -batchmode \
   -serial "${UNITY_SERIAL}" \
-  -username "${UNITY_USERNAME}"
+  -username "${UNITY_USERNAME}" \
   -password "${UNITY_PASSWORD}"
 else
   #Authorize unity with serial if we have one
   "${UNITY_APP}/Contents/MacOS/Unity" \
   -quit \
   -batchmode \
-  -username "${UNITY_USERNAME}"
+  -username "${UNITY_USERNAME}" \
   -password "${UNITY_PASSWORD}"
 fi
