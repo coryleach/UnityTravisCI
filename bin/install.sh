@@ -2,39 +2,48 @@
 
 echo "install.sh hello world!"
 
+# All platofrm links but we only use Mac
 UNITY_MAC_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json"
-UNITY_WIN_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json"
-UNITY_NIX_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json"
-
-#Setup Default Values if ENV vars do not exist
-if [ -z "${UNITY_INSTALLER_HASH}" ]; then
-    UNITY_INSTALLER_HASH="dcb72c2e9334"
-fi
-
-if [ -z "${UNITY_INSTALLER_VERSION}" ]; then
-    UNITY_INSTALLER_VERSION="2019.3.15f1"
-fi
-
-JSON=$(curl $UNITY_MAC_VERSIONS_URL | jq '.official[-1]')
-LATEST_VERSION=$(jq --jsonargs '[version]' "${JSON}")
-LATEST_VERSION_URL=$(jq --jsonargs '[downloadUrl]' "${JSON}")
-
-echo $LATEST_VERSION
-echo $LATEST_VERSION_URL
-
-# Links for posterity
-# MacOS Versions Download Link
-# https://public-cdn.cloud.unity3d.com/hub/prod/releases-darwin.json
-
-# Windows Version Download Link
-# https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json
-
-# Linux Versions Download Link
-# https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json
+#UNITY_WIN_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-win32.json"
+#UNITY_NIX_VERSIONS_URL="https://public-cdn.cloud.unity3d.com/hub/prod/releases-linux.json"
 
 # See https://unity3d.com/get-unity/download/archive to get download URLs
 UNITY_DOWNLOAD_CACHE="${HOME}/unity_download_cache"
-UNITY_INSTALLER_URL="https://download.unity3d.com/download_unity/${UNITY_INSTALLER_HASH}/MacEditorInstaller/${UNITY_INSTALLER_VERSION}.pkg"
+
+#Setup Default Values if ENV vars do not exist
+if [ ! -z "${UNITY_INSTALLER_HASH}" ] && [ ! -z "${UNITY_VERSION}" ]; then
+  UNITY_DOWNLOAD_URL="https://download.unity3d.com/download_unity/${UNITY_INSTALLER_HASH}/MacEditorInstaller/${UNITY_VERSION}.pkg"
+  echo "Using download link specified by environment:" $UNITY_DOWNLOAD_URL
+else
+  #Download JSON data that UnityHub uses to get its urls
+  VERSIONS_JSON=$(curl $UNITY_MAC_VERSIONS_URL)
+
+  #AVAILABLE_VERSIONS=$(jq ".official | .[].version" <<< "${VERSIONS_JSON}")
+  #echo "Available Versions:" $AVAILABLE_VERSIONS
+
+  #Attempt to get a download link for the requested version out of json
+  if [ ! -z "${UNITY_VERSION}" ]; then
+    MY_VERSION_URL=$(jq ".official[] | select(.version | startswith(\""${UNITY_VERSION}"\")).downloadUrl" <<< "${VERSIONS_JSON}")
+    MY_VERSION_URL=$(jq --slurp --raw-input 'split("\n")[:-1]' <<< "${MY_VERSION_URL}")
+    UNITY_DOWNLOAD_URL=$(jq --raw-output ".[-1]" <<< "${MY_VERSION_URL}")
+    echo "Using Download Url:" $UNITY_DOWNLOAD_URL
+  fi
+
+  #Fallback to the latest version of unity
+  if [ -z "${UNITY_DOWNLOAD_URL}" ]; then
+    #Latest version should be the last element in the array
+    LATEST_VERSION_JSON=$(jq '.official[-1]' <<< "${VERSIONS_JSON}")
+    LATEST_VERSION=$(jq '.version' <<< "${LATEST_VERSION_JSON}")
+    UNITY_DOWNLOAD_URL=$(jq '.downloadUrl' <<< "${LATEST_VERSION_JSON}")
+    echo "Downloading Latest Version:" $LATEST_VERSION
+    echo "Download Url:" "${UNITY_DOWNLOAD_URL}"
+  fi
+
+  #Remove front and back quotes from URL we just parsed out of JSON
+  UNITY_DOWNLOAD_URL="${UNITY_DOWNLOAD_URL%\"}"
+  UNITY_DOWNLOAD_URL="${UNITY_DOWNLOAD_URL#\"}"
+
+fi
 
 # Create our cache directory if it does not exist
 if [ ! -d $UNITY_DOWNLOAD_CACHE ]; then
@@ -42,19 +51,16 @@ if [ ! -d $UNITY_DOWNLOAD_CACHE ]; then
 fi
 
 #Get name of installer file from the URL
-FILENAME=$(basename "${UNITY_INSTALLER_URL}")
-INSTALLER_FULLPATH="${UNITY_DOWNLOAD_CACHE}/${FILENAME}"
+FILENAME=$(basename "${UNITY_DOWNLOAD_URL}")
+INSTALLER_PATH="${UNITY_DOWNLOAD_CACHE}/${FILENAME}"
 
 # Downloads a package if it does not already exist in cache
-if [ ! -e $INSTALLER_FULLPATH ]; then
-	echo "${FILENAME} does not exist. Downloading from ${UNITY_INSTALLER_URL}: "
-	curl -o "${INSTALLER_FULLPATH}" "$UNITY_INSTALLER_URL"
+if [ ! -e $INSTALLER_PATH ]; then
+	echo "Downloading installer."
+	curl -o "${INSTALLER_PATH}" ${UNITY_DOWNLOAD_URL}
 else
 	echo "${FILENAME} Exists. Skipping download."
 fi
-
-echo "Contents of Unity Download Cache:"
-ls $UNITY_DOWNLOAD_CACHE
 
 echo "Installing Unity"
 sudo installer -dumplog -package "${INSTALLER_FULLPATH}" -target /
