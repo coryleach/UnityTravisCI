@@ -9,20 +9,10 @@ cache:
   directories:
     - $HOME/unity_download_cache/ #Cache unity installer files
 before_install:
-  - curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/before-install.sh > ./before-install.sh
-  - curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/install.sh > ./install.sh
-  - curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/auth.sh > ./auth.sh
-  - curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/run-tests.sh > ./run-tests.sh
-  - curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/deauth.sh > ./deauth.sh
-  - chmod +x ./before-install.sh
-  - chmod +x ./install.sh
-  - chmod +x ./auth.sh
-  - chmod +x ./run-tests.sh
-  - chmod +x ./deauth.sh
-  - ./before-install.sh
+  - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/before-install.sh)
 install:
-  - ./install.sh
+  - source ./install.sh
 script:
-  - ./auth.sh
-  - ./run-tests.sh
-  - ./deauth.sh
+  - source ./auth.sh
+  - source ./run-tests.sh
+  - source ./deauth.sh
