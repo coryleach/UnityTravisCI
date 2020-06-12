@@ -63,4 +63,4 @@ else
 fi
 
 echo "Installing Unity"
-sudo installer -dumplog -package "${INSTALLER_FULLPATH}" -target /
+sudo installer -dumplog -package "${INSTALLER_PATH}" -target /
