@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ev
+
 echo "install.sh hello world!"
 
 USE_GET_UNITY=true
