@@ -81,8 +81,6 @@ fi
 FILENAME=$(basename "${UNITY_DOWNLOAD_URL}")
 INSTALLER_PATH="${UNITY_DOWNLOAD_CACHE}/${FILENAME}"
 
-exit 0
-
 # Downloads a package if it does not already exist in cache
 if [ ! -e $INSTALLER_PATH ]; then
 	echo "Downloading installer."
