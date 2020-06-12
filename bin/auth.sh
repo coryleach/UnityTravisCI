@@ -23,8 +23,8 @@ echo "Authorizing Unity ${UNITY_VERSION}"
 "${UNITY_APP}/Contents/MacOS/Unity" \
 -logfile - \
 -serial "${UNITY_SERIAL}" \
--username "${UNITY_USERNAME}" \
--password "${UNITY_PASSWORD}"  \
+-username "\"${UNITY_USERNAME}\"" \
+-password "\"${UNITY_PASSWORD}\""  \
 -batchmode \
 -noUpm \
 -quit
