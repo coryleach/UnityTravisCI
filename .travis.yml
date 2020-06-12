@@ -19,10 +19,10 @@ before_install:
   - chmod +x ./auth.sh
   - chmod +x ./run-tests.sh
   - chmod +x ./deauth.sh
-  - before-install.sh
+  - ./before-install.sh
 install:
-  - install.sh
+  - ./install.sh
 script:
-  - auth.sh
-  - run-tests.sh
-  - deauth.sh
+  - ./auth.sh
+  - ./run-tests.sh
+  - ./deauth.sh
