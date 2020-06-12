@@ -2,6 +2,7 @@
 
 echo "Looking for Unity..."
 UNITY_INSTALLS=$(find /Applications/Unity -name "Unity.app")
+echo $UNITY_INSTALLS
 UNITY_APP=$(grep "${UNITY_VERSION}" <<< "$UNITY_INSTALLS")
 echo "found:" $UNITY_APP
 export UNITY_APP
