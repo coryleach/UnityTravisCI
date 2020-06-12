@@ -9,6 +9,7 @@ UNITY_PROJECT_FOLDER="TestUnityProject"
 
 if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
 
+  echo "Running Test Script for 2017 and 2018"
   #Unity 2018 and earlier
   "${UNITY_APP}/Contents/MacOS/Unity" \
       -batchmode \
@@ -23,6 +24,7 @@ if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
 
 else
 
+  echo "Running 2019+ Test Script"
   "${UNITY_APP}/Contents/MacOS/Unity" \
       -batchmode \
       -nographics \

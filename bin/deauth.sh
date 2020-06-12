@@ -7,7 +7,7 @@ echo "Deauthorizing Unity"
 
 #Return Unity License
 "${UNITY_APP}/Contents/MacOS/Unity" \
--logFile "./unity.returnlicense.log" \
+-logfile - \
 -batchmode \
 -returnlicense \
 -quit

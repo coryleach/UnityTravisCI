@@ -21,7 +21,7 @@ export UNITY_APP
 echo "Authorizing Unity ${UNITY_VERSION}"
 
 "${UNITY_APP}/Contents/MacOS/Unity" \
--logFile "./unity.activation.log" \
+-logfile - \
 -serial "${UNITY_SERIAL}" \
 -username "${UNITY_USERNAME}" \
 -password "${UNITY_PASSWORD}"  \
