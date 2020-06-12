@@ -21,8 +21,10 @@ export UNITY_APP
 echo "Authorizing Unity ${UNITY_VERSION}"
 
 "${UNITY_APP}/Contents/MacOS/Unity" \
--quit \
--batchmode \
+-logFile "./unity.activation.log" \
 -serial "${UNITY_SERIAL}" \
 -username "${UNITY_USERNAME}" \
--password "${UNITY_PASSWORD}" || true
+-password "${UNITY_PASSWORD}"  \
+-batchmode \
+-noUpm \
+-quit

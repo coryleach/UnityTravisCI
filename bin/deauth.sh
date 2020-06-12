@@ -5,7 +5,9 @@ export EVENT_NOKQUEUE=1
 
 echo "Deauthorizing Unity"
 
-#Authorize unity with serial if we have one
+#Return Unity License
 "${UNITY_APP}/Contents/MacOS/Unity" \
--quit \
--returnlicense
+-logFile "./unity.returnlicense.log" \
+-batchmode \
+-returnlicense \
+-quit
