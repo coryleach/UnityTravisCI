@@ -28,7 +28,7 @@ echo "Authorizing Unity ${UNITY_VERSION}"
 if [ ! -z "${UNITY_SERIAL}" ]; then
 
   "${UNITY_APP}/Contents/MacOS/Unity" \
-  -logfile /dev/stdout \
+  -logfile - \
   -serial "${UNITY_SERIAL}" \
   -username "${UNITY_USERNAME}" \
   -password "${UNITY_PASSWORD}" \
@@ -40,7 +40,7 @@ else
 
   #Attempting Auth Without Serial (This currently isn't supported AFAIK)
   "${UNITY_APP}/Contents/MacOS/Unity" \
-  -logfile /dev/stdout \
+  -logfile - \
   -username "${UNITY_USERNAME}" \
   -password "${UNITY_PASSWORD}" \
   -batchmode \
