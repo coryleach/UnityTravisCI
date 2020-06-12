@@ -11,8 +11,10 @@ cache:
 before_install:
   - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/before-install.sh)
 install:
-  - source ./install.sh
+  - ./install.sh
+before-script:
+  - ./auth.sh
 script:
-  - source ./auth.sh
-  - source ./run-tests.sh
-  - source ./deauth.sh
+  - ./run-tests.sh
+after-script:
+  - ./dauth.sh

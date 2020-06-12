@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ev
 
 # https://github.com/tmux/tmux/issues/475#issuecomment-231527324
 export EVENT_NOKQUEUE=1
@@ -33,18 +34,11 @@ if [ ! -z "${UNITY_SERIAL}" ]; then
   -username "${UNITY_USERNAME}" \
   -password "${UNITY_PASSWORD}" \
   -batchmode \
-  -noUpm \
   -quit
 
 else
 
-  #Attempting Auth Without Serial (This currently isn't supported AFAIK)
-  "${UNITY_APP}/Contents/MacOS/Unity" \
-  -logfile - \
-  -username "${UNITY_USERNAME}" \
-  -password "${UNITY_PASSWORD}" \
-  -batchmode \
-  -noUpm \
-  -quit
+  echo "Authorizing Unity without a Serial key is not currently supported."
+  exit 1
 
 fi

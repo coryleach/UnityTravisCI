@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -ev
 # https://github.com/tmux/tmux/issues/475#issuecomment-231527324
 export EVENT_NOKQUEUE=1
 
@@ -31,8 +31,6 @@ else
       -silent-crashes \
       -stackTraceLogType Full \
       -logFile - \
-      -username "${UNITY_USERNAME}" \
-      -password "${UNITY_PASSWORD}" \
       -projectPath "$(pwd)/${UNITY_PROJECT_FOLDER}" \
       -runEditorTests \
       -editorTestsResultFile "$(pwd)/test.xml"

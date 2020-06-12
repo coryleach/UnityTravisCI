@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -ev
 echo "Preparing to Install"
 
 declare -a FILES=("install.sh"
