@@ -12,9 +12,7 @@ before_install:
   - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/before-install.sh)
 install:
   - ./install.sh
-before-script:
-  - ./auth.sh
 script:
-  - ./run-tests.sh
-after-script:
-  - ./dauth.sh
+  - source ./auth.sh
+  - source ./run-tests.sh
+  - source ./deauth.sh

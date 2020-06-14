@@ -5,6 +5,11 @@ export EVENT_NOKQUEUE=1
 
 echo "runtests.sh hello world!"
 
+if [ -z "${UNITY_APP}" ]; then
+  echo "UNITY_APP env var not defined. Cannot find installed Unity version."
+  exit 1
+fi
+
 UNITY_PROJECT_FOLDER="TestUnityProject"
 
 if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
