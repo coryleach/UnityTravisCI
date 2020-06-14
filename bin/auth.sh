@@ -33,6 +33,7 @@ if [ ! -z "${UNITY_SERIAL}" ]; then
   -username "${UNITY_USERNAME}" \
   -password "${UNITY_PASSWORD}" \
   -batchmode \
+  -nographics \
   -quit
 
 else
