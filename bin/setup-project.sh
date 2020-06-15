@@ -27,9 +27,16 @@ if [ ! -f "$PACKAGE_FILE" ]; then
 
 else
 
+  UNITY_PROJECT_CACHE="${HOME}/project_cache"
+
+  # Create our cache directory if it does not exist
+  if [ ! -d $UNITY_PROJECT_CACHE ]; then
+    mkdir -m 777 $UNITY_PROJECT_CACHE
+  fi
+
   echo "Test target is a package"
   echo "Creating project for testing"
-  UNITY_PROJECT_PATH="${HOME}/TestProject"
+  UNITY_PROJECT_PATH="${UNITY_PROJECT_CACHE}/TestProject"
   export UNITY_PROJECT_PATH
   echo "Project Path: ${UNITY_PROJECT_PATH}"
 
