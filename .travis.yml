@@ -14,8 +14,8 @@ install:
   - ./install.sh
   - source ./find-unity.sh #source this because it exports required env vars
 before_script:
-  - ./auth.sh
+  - ./get-license.sh
 script:
   - ./run-tests.sh
 after_script:
-  - ./deauth.sh
+  - ./return-license.sh

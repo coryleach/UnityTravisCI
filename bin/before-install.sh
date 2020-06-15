@@ -3,9 +3,9 @@
 echo "Preparing to Install"
 
 declare -a FILES=("install.sh"
-                  "auth.sh"
+                  "get-license.sh"
                   "run-tests.sh"
-                  "deauth.sh"
+                  "return-license.sh"
                   "find-unity.sh")
 
 #Download Files

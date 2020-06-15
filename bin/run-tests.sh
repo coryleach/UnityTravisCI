@@ -3,7 +3,7 @@
 # https://github.com/tmux/tmux/issues/475#issuecomment-231527324
 export EVENT_NOKQUEUE=1
 
-echo "runtests.sh hello world!"
+echo "Running Unit Tests"
 
 if [ -z "${UNITY_APP}" ]; then
   echo "UNITY_APP env var not defined. Cannot find installed Unity version."
