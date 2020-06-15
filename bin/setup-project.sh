@@ -44,10 +44,9 @@ else
   "${UNITY_APP}/Contents/MacOS/Unity" \
       -batchmode \
       -nographics \
-      -noUpm \
       -quit \
       -logFile - \
-      -projectPath "${UNITY_PROJECT_PATH}"  || exit 1
+      -createProject "${UNITY_PROJECT_PATH}"  || exit 1
 
   #Modify packages to include our test package
   echo "Adding package name to manifest.json"
