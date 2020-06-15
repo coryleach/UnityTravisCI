@@ -34,7 +34,7 @@ if [ ! -z "${UNITY_SERIAL}" ]; then
   -password "${UNITY_PASSWORD}" \
   -batchmode \
   -nographics \
-  -quit
+  -quit || exit 1
 
 else
 
