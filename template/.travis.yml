@@ -4,6 +4,7 @@ osx_image: xcode11.2
 branches:
   only:
     - master
+    - dev
 cache:
   timeout: 86400
   directories:
@@ -18,6 +19,9 @@ before_script:
   - source ./setup-project.sh #source this because it exports project path
 script:
   - ./run-tests.sh
-after_script:
+after_success:
+  - ./return-license.sh
+  - ./clean-project.sh
+after_failure:
   - ./return-license.sh
   - ./clean-project.sh

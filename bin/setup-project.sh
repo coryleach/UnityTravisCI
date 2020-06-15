@@ -37,6 +37,7 @@ else
   "${UNITY_APP}/Contents/MacOS/Unity" \
       -batchmode \
       -nographics \
+      -noUpm \
       -quit \
       -logFile - \
       -projectPath "${UNITY_PROJECT_PATH}"  || exit 1
