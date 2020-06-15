@@ -10,7 +10,12 @@ if [ -z "${UNITY_APP}" ]; then
   exit 1
 fi
 
-UNITY_PROJECT_FOLDER="TestUnityProject"
+if [ -z "${UNITY_PROJECT_PATH}" ]; then
+  echo "UNITY_PROJECT_PATH env var not defined."
+  exit 1
+fi
+
+echo "Running Tests in ${UNITY_PROJECT_PATH}"
 
 if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
 
@@ -21,7 +26,7 @@ if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
       -nographics \
       -silent-crashes \
       -logFile "$(pwd)/unity.log" \
-      -projectPath "$(pwd)/${UNITY_PROJECT_FOLDER}" \
+      -projectPath "${UNITY_PROJECT_PATH}" \
       -runEditorTests \
       -editorTestsResultFile "$(pwd)/test.xml"
 
@@ -36,7 +41,7 @@ else
       -silent-crashes \
       -stackTraceLogType Full \
       -logFile - \
-      -projectPath "$(pwd)/${UNITY_PROJECT_FOLDER}" \
+      -projectPath "${UNITY_PROJECT_PATH}" \
       -runEditorTests \
       -editorTestsResultFile "$(pwd)/test.xml"
 

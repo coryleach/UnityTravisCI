@@ -15,7 +15,9 @@ install:
   - source ./find-unity.sh #source this because it exports required env vars
 before_script:
   - ./get-license.sh
+  - source ./setup-project.sh #source this because it exports project path
 script:
   - ./run-tests.sh
 after_script:
   - ./return-license.sh
+  - ./clean-project.sh
