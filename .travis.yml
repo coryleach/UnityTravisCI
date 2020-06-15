@@ -12,7 +12,10 @@ before_install:
   - bash <(curl -fsSL https://raw.githubusercontent.com/coryleach/UnityTravisCI/master/bin/before-install.sh)
 install:
   - ./install.sh
+  - source ./find-unity.sh #source this because it exports required env vars
+before_script:
+  - ./auth.sh
 script:
-  - source ./auth.sh
-  - source ./run-tests.sh
-  - source ./deauth.sh
+  - ./run-tests.sh
+after_script:
+  - ./deauth.sh

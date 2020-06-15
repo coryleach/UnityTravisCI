@@ -3,11 +3,16 @@
 # https://github.com/tmux/tmux/issues/475#issuecomment-231527324
 export EVENT_NOKQUEUE=1
 
-echo "Deauthorizing Unity"
+echo "Returning Unity License"
+
+if [ -z "${UNITY_APP}" ]; then
+  echo "UNITY_APP environment variable not set. It should be set to the Unity install path"
+fi
 
 #Return Unity License
 "${UNITY_APP}/Contents/MacOS/Unity" \
 -logfile - \
 -batchmode \
+-nographics \
 -returnlicense \
--quit
+-quit || exit 1

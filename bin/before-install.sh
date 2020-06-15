@@ -5,7 +5,8 @@ echo "Preparing to Install"
 declare -a FILES=("install.sh"
                   "auth.sh"
                   "run-tests.sh"
-                  "deauth.sh")
+                  "deauth.sh"
+                  "find-unity.sh")
 
 #Download Files
 for FILE in "${FILES[@]}"

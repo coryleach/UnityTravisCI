@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "install.sh hello world!"
-
 USE_GET_UNITY=true
 
 # See https://unity3d.com/get-unity/download/archive to get download URLs
