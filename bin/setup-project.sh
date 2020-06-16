@@ -47,7 +47,7 @@ else
   fi
 
   #Create Project
-  "${UNITY_APP}/Contents/MacOS/Unity" \
+  "${UNITY_APP}" \
       -batchmode \
       -nographics \
       -quit \

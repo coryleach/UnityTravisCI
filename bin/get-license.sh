@@ -19,7 +19,7 @@ fi
 if [ ! -z "${UNITY_SERIAL}" ]; then
 
   #We need to successfully get a license here or else we should fail the build
-  "${UNITY_APP}/Contents/MacOS/Unity" \
+  "${UNITY_APP}" \
   -logfile - \
   -serial "${UNITY_SERIAL}" \
   -username "${UNITY_USERNAME}" \

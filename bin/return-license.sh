@@ -11,7 +11,7 @@ if [ -z "${UNITY_APP}" ]; then
 fi
 
 #Return Unity License
-"${UNITY_APP}/Contents/MacOS/Unity" \
+"${UNITY_APP}" \
 -batchmode \
 -nographics \
 -returnlicense \

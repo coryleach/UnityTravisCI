@@ -16,6 +16,7 @@ if [ -z "${UNITY_APP}"]; then
   echo "Unity install not found."
   exit 1
 else
-  echo "found:" $UNITY_APP
+  UNITY_APP="${UNITY_APP}/Contents/MacOS/Unity"
+  echo "Export UNITY_APP=${UNITY_APP}"
   export UNITY_APP
 fi
