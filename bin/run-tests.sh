@@ -17,6 +17,13 @@ fi
 
 echo "Running Tests in ${UNITY_PROJECT_PATH}"
 
+TEST_LOG_FILE="$(pwd)/test.xml"
+
+#clear an old file if one exists
+if [ -f "${TEST_LOG_FILE}" ]; then
+  rm "${TEST_LOG_FILE}"
+fi
+
 if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
 
   echo "Running Test Script for 2017 and 2018"
@@ -28,7 +35,7 @@ if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
       -logFile "$(pwd)/unity.log" \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runEditorTests \
-      -editorTestsResultFile "$(pwd)/test.xml" || exit 1
+      -editorTestsResultFile "${TEST_LOG_FILE}" || exit 1
 
   cat "$(pwd)/unity.log"
 
@@ -43,13 +50,17 @@ else
       -logFile - \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runTests \
-      -testsResults "$(pwd)/test.xml" || exit 1
+      -testPlatform EditMode \
+      -testsResults "${TEST_LOG_FILE}" || exit 1
 
 fi
 
-LOG_FILE="$(pwd)/test.xml"
+if [ ! -f "${TEST_LOG_FILE}" ]; then
+  echo "Test result file " $TEST_LOG_FILE "Not Found"
+  exit 1
+fi
 
-printf '\n%s\n\n' "$(<"${LOG_FILE}")"
+printf '\n%s\n\n' "$(<"${TEST_LOG_FILE}")"
 
 checktests() {
 
@@ -57,9 +68,9 @@ checktests() {
     local PASSED
     local FAILED
 
-    TOTAL=$(grep -Eo 'total="([0-9]*)"' "${LOG_FILE}" | head -1 | grep -Eo '[0-9]+')
-    PASSED=$(grep -Eo 'passed="([0-9]*)"' "${LOG_FILE}" | head -1 | grep -Eo '[0-9]+')
-    FAILED=$(grep -Eo 'failed="([0-9]*)"' "${LOG_FILE}" | head -1 | grep -Eo '[0-9]+')
+    TOTAL=$(grep -Eo 'total="([0-9]*)"' "${TEST_LOG_FILE}" | head -1 | grep -Eo '[0-9]+')
+    PASSED=$(grep -Eo 'passed="([0-9]*)"' "${TEST_LOG_FILE}" | head -1 | grep -Eo '[0-9]+')
+    FAILED=$(grep -Eo 'failed="([0-9]*)"' "${TEST_LOG_FILE}" | head -1 | grep -Eo '[0-9]+')
 
     printf "Test Results:\n - Total %s\n ✔ Passed %s\n 𐄂 Failed %s\n" "${TOTAL}" "${PASSED}" "${FAILED}"
 
@@ -71,7 +82,7 @@ checktests() {
 
 }
 
-checktests "${LOG_FILE}"
+checktests "${TEST_LOG_FILE}"
 
 CODE=$?
 
