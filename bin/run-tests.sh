@@ -5,6 +5,11 @@ export EVENT_NOKQUEUE=1
 
 echo "Running Unit Tests"
 
+TEST_PLATFORM="editmode"
+if [ ! -z $1 ]; then
+  TEST_PLATFORM=$1
+fi
+
 if [ -z "${UNITY_APP}" ]; then
   echo "UNITY_APP env var not defined. Cannot find installed Unity version."
   exit 1
@@ -50,7 +55,7 @@ else
       -logFile - \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runTests \
-      -testPlatform EditMode \
+      -testPlatform ${TEST_PLATFORM} \
       -testsResults "${TEST_LOG_FILE}" || exit 1
 
 fi
