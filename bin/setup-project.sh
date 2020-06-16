@@ -55,7 +55,8 @@ else
     echo "Packages/manifest.json file not found in created project."
   fi
 
-  PACKAGE_NAME=$(jq '.name' "${PACKAGE_FILE}")
-  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" }' ${MANIFEST_FILE}  > "${MANIFEST_FILE}" || exit 1
+  PACKAGE_NAME=$(jq '.name' ${PACKAGE_FILE})
+  echo 'Adding { '${PACKAGE_NAME}' : "file:'$(pwd)'" }'
+  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" }' ${MANIFEST_FILE} > ${MANIFEST_FILE} || exit 1
 
 fi
