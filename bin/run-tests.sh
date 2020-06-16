@@ -23,6 +23,7 @@ fi
 echo "Running Tests in ${UNITY_PROJECT_PATH}"
 
 TEST_LOG_FILE="$(pwd)/test.xml"
+LOG_FILE=$"$(pwd)/unity.log"
 
 #clear an old file if one exists
 if [ -f "${TEST_LOG_FILE}" ]; then
@@ -37,7 +38,7 @@ if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
       -batchmode \
       -nographics \
       -silent-crashes \
-      -logFile "$(pwd)/unity.log" \
+      -logFile "${LOG_FILE}" \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runEditorTests \
       -editorTestsResultFile "${TEST_LOG_FILE}" || exit 1
@@ -52,7 +53,7 @@ else
       -nographics \
       -silent-crashes \
       -stackTraceLogType Full \
-      -logFile - \
+      -logFile "${LOG_FILE}" \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runTests \
       -testPlatform ${TEST_PLATFORM} \
@@ -62,7 +63,6 @@ fi
 
 if [ ! -f "${TEST_LOG_FILE}" ]; then
   echo "Test result file " $TEST_LOG_FILE "Not Found"
-  exit 1
 fi
 
 printf '\n%s\n\n' "$(<"${TEST_LOG_FILE}")"
