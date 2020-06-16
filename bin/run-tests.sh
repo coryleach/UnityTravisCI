@@ -56,6 +56,7 @@ else
       -logFile "${LOG_FILE}" \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runEditorTests \
+      -testPlatform ${TEST_PLATFORM} \
       -editorTestsResultFile "${TEST_LOG_FILE}" || exit 1
 
       #-runTests \
