@@ -55,9 +55,12 @@ else
       -stackTraceLogType Full \
       -logFile "${LOG_FILE}" \
       -projectPath "${UNITY_PROJECT_PATH}" \
-      -runTests \
-      -testPlatform ${TEST_PLATFORM} \
-      -testsResults "${TEST_LOG_FILE}" || exit 1
+      -runEditorTests \
+      -editorTestsResultFile "${TEST_LOG_FILE}" || exit 1
+
+      #-runTests \
+      #-testPlatform ${TEST_PLATFORM} \
+      #-testsResults "${TEST_LOG_FILE}" || exit 1
 
 fi
 
