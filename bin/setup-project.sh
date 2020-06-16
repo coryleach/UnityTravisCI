@@ -56,6 +56,6 @@ else
   fi
 
   PACKAGE_NAME=$(jq '.name' "${PACKAGE_FILE}")
-  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" }' > "${MANIFEST_FILE}" || exit 1
+  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" }' ${MANIFEST_FILE}  > "${MANIFEST_FILE}" || exit 1
 
 fi
