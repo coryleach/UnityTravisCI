@@ -40,7 +40,7 @@ else
   export UNITY_PROJECT_PATH
   echo "Project Path: ${UNITY_PROJECT_PATH}"
 
-  if [ -f $UNITY_PROJECT_PATH ]; then
+  if [ -d $UNITY_PROJECT_PATH ]; then
     echo "Removing test project"
     rm -rf $UNITY_PROJECT_PATH
   fi
