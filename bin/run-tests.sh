@@ -57,11 +57,7 @@ else
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runTests \
       -testPlatform ${TEST_PLATFORM} \
-      -editorTestsResultFile "${TEST_LOG_FILE}" || exit 1
-
-      #-runTests \
-      #-testPlatform ${TEST_PLATFORM} \
-      #-testsResults "${TEST_LOG_FILE}" || exit 1
+      -testResults "${TEST_LOG_FILE}" || exit 1
 
 fi
 
