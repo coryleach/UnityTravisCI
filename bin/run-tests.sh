@@ -28,7 +28,7 @@ if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
       -logFile "$(pwd)/unity.log" \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runEditorTests \
-      -editorTestsResultFile "$(pwd)/test.xml"
+      -editorTestsResultFile "$(pwd)/test.xml" || exit 1
 
   cat "$(pwd)/unity.log"
 
@@ -43,7 +43,7 @@ else
       -logFile - \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runEditorTests \
-      -editorTestsResultFile "$(pwd)/test.xml"
+      -editorTestsResultFile "$(pwd)/test.xml" || exit 1
 
 fi
 

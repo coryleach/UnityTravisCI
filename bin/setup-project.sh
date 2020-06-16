@@ -40,8 +40,9 @@ else
   export UNITY_PROJECT_PATH
   echo "Project Path: ${UNITY_PROJECT_PATH}"
 
+  #Make sure that target directory is empty
   if [ -d $UNITY_PROJECT_PATH ]; then
-    echo "Removing test project"
+    echo "Cleaning up old test project"
     rm -rf $UNITY_PROJECT_PATH
   fi
 
@@ -63,7 +64,7 @@ else
   PACKAGE_NAME=$(jq '.name' ${PACKAGE_FILE})
   echo 'Adding { '${PACKAGE_NAME}' : "file:'$(pwd)'" }'
   #Add Package Manifest Entry and write new manifest to temp file
-  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" }' ${MANIFEST_FILE} > temp.json || exit 1
+  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" } | .testables = ['${PACKAGE_NAME}']' ${MANIFEST_FILE} > temp.json || exit 1
   #Ovewrite old manifest with new manifest json
   mv temp.json ${MANIFEST_FILE}
 
