@@ -62,6 +62,9 @@ else
 
   PACKAGE_NAME=$(jq '.name' ${PACKAGE_FILE})
   echo 'Adding { '${PACKAGE_NAME}' : "file:'$(pwd)'" }'
-  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" }' ${MANIFEST_FILE} > ${MANIFEST_FILE} || exit 1
+  #Add Package Manifest Entry and write new manifest to temp file
+  jq '.dependencies += { '${PACKAGE_NAME}' : "file:'$(pwd)'" }' ${MANIFEST_FILE} > temp.json || exit 1
+  #Ovewrite old manifest with new manifest json
+  mv temp.json ${MANIFEST_FILE}
 
 fi
