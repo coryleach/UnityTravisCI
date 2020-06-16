@@ -53,7 +53,7 @@ else
       -nographics \
       -silent-crashes \
       -stackTraceLogType Full \
-      -logFile "${LOG_FILE}" \
+      -logFile - \
       -projectPath "${UNITY_PROJECT_PATH}" \
       -runTests \
       -testPlatform ${TEST_PLATFORM} \
