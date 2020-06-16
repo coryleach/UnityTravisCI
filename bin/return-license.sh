@@ -7,11 +7,11 @@ echo "Returning Unity License"
 
 if [ -z "${UNITY_APP}" ]; then
   echo "UNITY_APP environment variable not set. It should be set to the Unity install path"
+  exit 1
 fi
 
 #Return Unity License
 "${UNITY_APP}/Contents/MacOS/Unity" \
--logfile - \
 -batchmode \
 -nographics \
 -returnlicense \
