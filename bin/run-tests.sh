@@ -42,8 +42,8 @@ else
       -stackTraceLogType Full \
       -logFile - \
       -projectPath "${UNITY_PROJECT_PATH}" \
-      -runEditorTests \
-      -editorTestsResultFile "$(pwd)/test.xml" || exit 1
+      -runTests \
+      -testsResults "$(pwd)/test.xml" || exit 1
 
 fi
 
