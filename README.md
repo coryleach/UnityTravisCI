@@ -1,9 +1,14 @@
-# UnityTravisCI
- Tools and scripts for getting steup with CI using Travis CI
- If package.json is found in the project folder this tool will create a test project and import the package with tests and run the tests.
- 
+<p align="center">
+<img align="center" src="https://raw.githubusercontent.com/coryleach/UnityPackages/master/Documentation/GameframeFace.gif" />
+</p>
+<h1 align="center">UnityTravisCI 👋</h1>
 
 [![Build Status](https://travis-ci.org/coryleach/UnityTravisCI.svg?branch=master)](https://travis-ci.org/coryleach/UnityTravisCI)
+
+Tools and scripts for getting steup with CI using Travis CI
+ If package.json is found in the project folder this tool will create a test project and import the package with tests and run the tests.
+ 
+### Environment Variables
 
 | Key                     | Description                                                                                                                                               | Required |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
