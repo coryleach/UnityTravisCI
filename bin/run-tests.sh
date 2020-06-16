@@ -46,7 +46,7 @@ if (echo "${UNITY_VERSION}" | grep "2017\|2018" &> /dev/null) ; then
 
 else
 
-  echo "Running 2019+ Test Script"
+  echo "Running 2019+ Test Script" ${TEST_PLATFORM}
   "${UNITY_APP}/Contents/MacOS/Unity" \
       -batchmode \
       -nographics \
